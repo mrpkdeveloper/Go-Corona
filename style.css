@@ -1,0 +1,6 @@
+#mycanvas {
+    background-image: url("./assets/back.jpeg");
+    background-position: center;
+    background-size: cover;
+    border: 10px solid black;
+}
