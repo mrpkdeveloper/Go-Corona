@@ -2,9 +2,10 @@ function intit() {
     canvas = document.getElementById("mycanvas")
     pen = canvas.getContext('2d')
     W = canvas.width = 900
-    H = canvas.height = 600
+    H = canvas.height = 500
     cw = 60
     score = 0
+    health = 100
     gameover = false
 
     //fighter
@@ -22,7 +23,7 @@ function intit() {
         x: 30,
         y: 200,
         random_prize: function () {
-            this.x = (Math.round(Math.random() * 29) + 1) * 30
+            this.x = (Math.round(Math.random() * 28) + 1) * 30
         },
         prize_update: function () {
             if (this.x == fighter.x && this.y == fighter.y) {
@@ -52,13 +53,22 @@ function intit() {
                 }
                 this.y += this.speed
             }
+            this.attack = function () {
+                if (this.x < fighter.x + cw &&
+                    this.x + cw > fighter.x &&
+                    this.y < fighter.y + cw &&
+                    this.y + cw > fighter.y) {
+                    // collision detected!
+                    health -= 10
+                }
+            }
         }
     }
 
     //virus objects created
     virus1 = new virusclass(W / 3 - 100, 0, "down", 30)
-    virus2 = new virusclass(W / 2, H - cw, "up", 50)
-    virus3 = new virusclass(W - 300, 0, "down", 30)
+    virus2 = new virusclass(W / 2, H - cw, "up", 30)
+    virus3 = new virusclass(W - 210, 0, "down", 30)
 
 
 
@@ -90,13 +100,19 @@ function draw() {
     pen.fillStyle = "black"
     pen.font = "25px roboto"
     pen.fillText(score, 50, 50)
+
+    //health
+    pen.fillText(health, 100, 50)
 }
 
 function update() {
     // console.log("in update")
     virus1.update_virus()
+    virus1.attack()
     virus2.update_virus()
+    virus2.attack()
     virus3.update_virus()
+    virus3.attack()
     prize.prize_update()
     if (gameover == true) {
         clearInterval(game)
