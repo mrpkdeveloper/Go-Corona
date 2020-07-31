@@ -5,7 +5,9 @@ function intit() {
     H = canvas.height = 500
     cw = 60
     score = 0
-    health = 100
+    health = {
+        value: 100
+    }
     gameover = false
 
     //fighter
@@ -27,14 +29,17 @@ function intit() {
         },
         prize_update: function () {
             if (this.x == fighter.x && this.y == fighter.y) {
-                // alert("u won")
                 score++
                 this.random_prize()
-                // gameover = true
 
             }
         }
     }
+
+    //score_img
+    score_img = new Image()
+    score_img.src = "./assets/trophy.png"
+
     prize.random_prize()
     //virus image
     virus_img = new Image()
@@ -53,22 +58,25 @@ function intit() {
                 }
                 this.y += this.speed
             }
+
+            //collison detection algorithim
             this.attack = function () {
                 if (this.x < fighter.x + cw &&
                     this.x + cw > fighter.x &&
                     this.y < fighter.y + cw &&
                     this.y + cw > fighter.y) {
                     // collision detected!
-                    health -= 10
+                    health.value -= 10
+
                 }
             }
         }
     }
 
     //virus objects created
-    virus1 = new virusclass(W / 3 - 100, 0, "down", 30)
-    virus2 = new virusclass(W / 2, H - cw, "up", 30)
-    virus3 = new virusclass(W - 210, 0, "down", 30)
+    virus1 = new virusclass(W / 3 - 100, 0, "down", 50)
+    virus2 = new virusclass(W / 2, H - cw, "up", 20)
+    virus3 = new virusclass(W - 210, 0, "down", 60)
 
 
 
@@ -99,10 +107,14 @@ function draw() {
     //score
     pen.fillStyle = "black"
     pen.font = "25px roboto"
+    pen.drawImage(score_img, 25, 20, cw, cw)
     pen.fillText(score, 50, 50)
 
     //health
-    pen.fillText(health, 100, 50)
+    pen.font = "15px roboto"
+    pen.fillText("Health", 100, 25)
+    pen.fillStyle = "red"
+    pen.fillRect(100, 30, health.value, 20)
 }
 
 function update() {
@@ -114,7 +126,11 @@ function update() {
     virus3.update_virus()
     virus3.attack()
     prize.prize_update()
+    if (health.value <= 0) {
+        gameover = true
+    }
     if (gameover == true) {
+        alert("game over")
         clearInterval(game)
     }
 }
