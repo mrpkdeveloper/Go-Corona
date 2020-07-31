@@ -134,6 +134,7 @@ function update() {
     if (gameover == true) {
         alert("game over")
         clearInterval(game)
+
     }
 }
 
