@@ -12,7 +12,7 @@ function intit() {
 
     //fighter
     fighter_img = new Image()
-    fighter_img.src = "./assets/superhero.png"
+    fighter_img.src = "./assets/boy.png"
     fighter = {
         x: 30,
         y: 200
@@ -20,7 +20,7 @@ function intit() {
 
     //prize
     prize_image = new Image()
-    prize_image.src = "./assets/gem.png"
+    prize_image.src = "./assets/mask.png"
     prize = {
         x: 30,
         y: 200,
@@ -42,8 +42,10 @@ function intit() {
 
     prize.random_prize()
     //virus image
-    virus_img = new Image()
-    virus_img.src = "./assets/v1.png"
+    virus_img1 = new Image()
+    virus_img1.src = "./assets/v1.png"
+    virus_img2 = new Image()
+    virus_img2.src = "./assets/v2.png"
 
     //virus class
     class virusclass {
@@ -75,7 +77,7 @@ function intit() {
 
     //virus objects created
     virus1 = new virusclass(W / 3 - 100, 0, "down", 50)
-    virus2 = new virusclass(W / 2, H - cw, "up", 20)
+    virus2 = new virusclass(W / 2, H - cw, "up", 40)
     virus3 = new virusclass(W - 210, 0, "down", 60)
 
 
@@ -99,9 +101,9 @@ function draw() {
     // console.log(virus.y)
     pen.clearRect(0, 0, W, H)
     pen.drawImage(fighter_img, fighter.x, fighter.y, cw, cw)
-    pen.drawImage(virus_img, virus1.x, virus1.y, cw, cw)
-    pen.drawImage(virus_img, virus2.x, virus2.y, cw, cw)
-    pen.drawImage(virus_img, virus3.x, virus3.y, cw, cw)
+    pen.drawImage(virus_img1, virus1.x, virus1.y, cw, cw)
+    pen.drawImage(virus_img2, virus2.x, virus2.y, cw, cw)
+    pen.drawImage(virus_img1, virus3.x, virus3.y, cw, cw)
     pen.drawImage(prize_image, prize.x, prize.y, cw, cw)
 
     //score
