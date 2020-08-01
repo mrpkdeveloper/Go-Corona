@@ -1,8 +1,10 @@
 function intit() {
     canvas = document.getElementById("mycanvas")
     pen = canvas.getContext('2d')
-    W = canvas.width = 900
-    H = canvas.height = 500
+    W = canvas.width = window.innerWidth - 50
+    H = canvas.height = window.innerHeight - 50
+    // W = canvas.width = 900
+    // H = canvas.height = 500
     cw = 60
     score = 0
     health = {
