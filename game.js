@@ -94,7 +94,19 @@ function intit() {
             fighter.x -= 30
         }
     }
+
+    function mouseclick(e) {
+        // console.log(e)
+        if (e.screenX > fighter.x) {
+            fighter.x += 30
+        }
+        if (e.screenX < fighter.x) {
+            fighter.x -= 30
+        }
+
+    }
     document.addEventListener("keydown", keypressed)
+    document.addEventListener("click", mouseclick)
 }
 
 
