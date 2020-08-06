@@ -17,7 +17,7 @@ function intit() {
     fighter_img.src = "./assets/boy.png"
     fighter = {
         x: 30,
-        y: 200
+        y: H / 2
     }
 
     //prize
@@ -25,7 +25,7 @@ function intit() {
     prize_image.src = "./assets/mask.png"
     prize = {
         x: 30,
-        y: 200,
+        y: H / 2,
         random_prize: function () {
             this.x = (Math.round(Math.random() * 28) + 1) * 30
         },
